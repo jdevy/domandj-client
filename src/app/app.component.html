@@ -1,0 +1,90 @@
+<div fxLayout="column" fxFlex [class.dark-theme]="isDarkTheme">
+  <mat-sidenav-container fxFlex>
+    <mat-sidenav #sidenav mode="side">
+      <mat-toolbar class="color-menu">
+        <span class="toolbar-filler"></span>
+        <button mat-icon-button (click)="sidenav.toggle();toggleMenu = !toggleMenu" class="md-icon-button sidenav-toggle-button" [hidden]="!sidenav.opened">
+          <mat-icon aria-label="Menu" class="material-icons">arrow_back_ios</mat-icon>
+        </button>
+      </mat-toolbar>
+
+      <div class="name-container">
+        <div *showAuthed="true">
+          <div>Welcome, {{(currentUser|async)?.name}}</div>
+        </div>
+      </div>
+
+      <mat-nav-list>
+        <a mat-list-item  *ngFor="let link of links"  [routerLink]="[link.path]" (click)="sidenav.toggle();toggleMenu = !toggleMenu" >
+          <mat-icon matListIcon>{{link.icon}}</mat-icon>
+          <span>{{link.label}}</span>
+        </a>
+      </mat-nav-list>
+      <!-- <mat-tab-group>
+        <mat-tab label="Users">
+          <mat-nav-list>
+            <mat-list-item *ngFor="let user of users">
+              <mat-icon matListAvatar svgIcon="avatars:{{user.avatar}}" class="avatar"></mat-icon>
+              <span>{{user.name}}</span>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-tab>
+        <mat-tab label="Settings">
+          <span>Settings</span>
+        </mat-tab>
+      </mat-tab-group> -->
+    </mat-sidenav>
+    
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <div *ngIf='!toggleMenu'>
+          <button mat-icon-button (click)="sidenav.toggle();toggleMenu = !toggleMenu" class="md-icon-button sidenav-toggle-button" [hidden]="sidenav.opened">
+                  <mat-icon aria-label="Menu" class="material-icons">menu</mat-icon>
+          </button>
+        </div>              
+        <span>&nbsp;Domandj</span>
+        <!-- Filler that pushes the menu button to the end of the toolbar -->
+        <span fxFlex></span>
+
+        <div *showAuthed="true">
+          <button mat-icon-button>
+            <mat-icon>person</mat-icon>
+          </button>
+          <span>{{(currentUser|async)?.name}}</span>
+        </div>
+
+        <button mat-icon-button [matMenuTriggerFor]="themeMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="content" fxFlex fxLayout="column">
+      <!-- <mat-card fxFlex="80">
+        <mat-icon svgIcon="avatars:{{selectedUser.avatar}}" class="avatar"></mat-icon>
+        <h2>{{selectedUser.name}}</h2>
+        <p>{{selectedUser.details}}</p>
+      </mat-card>
+
+      <mat-card fxFlex fxLayout="column" fxLayoutGap="14px">
+        <mat-slide-toggle [(ngModel)]="selectedUser.isAdmin">Is Admin?</mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="selectedUser.isCool">Is Cool?</mat-slide-toggle>
+      </mat-card> -->
+      <app-alert></app-alert>
+      <router-outlet fxFlex>
+      </router-outlet>
+
+    </div>
+    <mat-menu #themeMenu x-position="before">
+      <button mat-menu-item (click)="isDarkTheme = !isDarkTheme">Toggle Theme</button>
+      <div *showAuthed="false">
+        <button mat-menu-item [routerLink]="['/auth']">SIGN IN</button>
+      </div>
+      <div *showAuthed="true">
+        <button mat-menu-item  class="toolbar-button-menu" (click)="signout()">SIGN OUT</button>
+      </div>
+      </mat-menu>
+  </mat-sidenav-container>
+
+
+</div>

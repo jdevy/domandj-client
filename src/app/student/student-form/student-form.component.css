@@ -1,0 +1,25 @@
+mat-icon.avatar {
+  width:  64px;
+  height: 64px;
+  margin: 12px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.saveButton {
+  display: flex;
+  justify-content: center;
+}
+
+.avatar-bloc {
+  display: flex;
+}
+.avatar-selected {
+  flex:2;
+}
+
+.avatar-list {
+  flex:1;
+}

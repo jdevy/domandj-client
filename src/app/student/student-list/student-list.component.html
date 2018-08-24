@@ -1,0 +1,17 @@
+<button mat-mini-fab (click)="addStudent()" class="fab-bottom-right">
+  <mat-icon>add</mat-icon>
+</button>
+
+<mat-nav-list>
+  <mat-list-item *ngFor="let student of students">
+    <mat-icon matListAvatar svgIcon="avatars:{{student.avatar ? student.avatar : 'svg-3'}}" class="avatar"></mat-icon>
+    <h3 matLine>{{student.lastName}} {{student.firstName}}</h3>
+    <button mat-mini-fab (click)="deleteStudent(student.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <mat-divider></mat-divider>
+   </mat-list-item>
+</mat-nav-list>
+
+
+

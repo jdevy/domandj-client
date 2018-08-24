@@ -1,0 +1,52 @@
+<form id="form" #f="ngForm" name="form" class="form" (ngSubmit)="submit()">
+   <p>
+      <mat-form-field fxFlex>
+          <input matInput
+           id="firstName"
+           name="firstName"
+           #firstName="ngModel"
+           [(ngModel)]="student.firstName"
+           placeholder="John"
+           required />
+          <mat-error align="start" *ngIf="firstName.hasError('required')">
+            Student first name is required
+          </mat-error>
+        </mat-form-field>
+   </p>
+    <p>
+        <mat-form-field fxFlex>
+            <input  matInput
+                id="lastName"
+                name="lastName"
+                #lastName="ngModel"
+                [(ngModel)]="student.lastName"
+                required 
+                placeholder="Doe"
+                minlength="2"/>
+            <mat-error align="start" *ngIf="lastName.hasError('required')">
+                Student last name is required
+            </mat-error>
+            <mat-error align="start" *ngIf="lastName.hasError('minlength')">
+                At least 2 chars
+            </mat-error>
+        </mat-form-field>
+    </p>
+    <div class="avatar-bloc">
+        <div class="avatar-list">
+            <mat-form-field>
+                <mat-select name="avatar" placeholder="Avatar" [(ngModel)]="student.avatar">
+                    <mat-option *ngFor="let avatar of avatars; let i = index;" [value]="avatar">
+                        <mat-icon matListAvatar svgIcon="avatars:svg-{{i + 1}}" class="avatar"></mat-icon>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="avatar-selected">
+           <mat-icon matListAvatar svgIcon="avatars:{{student.avatar ? student.avatar : 'svg-1'}}" class="avatar"></mat-icon>
+        </div>
+    </div>
+  <p class="saveButton">
+      <button mat-button mat-raised-button color="primary" type="submit" [disabled]="f.invalid || f.pending">  {{'save'}}</button>
+  </p>
+
+</form>

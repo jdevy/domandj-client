@@ -1,0 +1,17 @@
+  <mat-card>
+    <mat-card-title>New student</mat-card-title>
+    <mat-card-header>
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-subtitle>
+        <small>all fields marked with star are required.</small>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <app-student-form fxFlex [student]="student" (save)="onStudentSaved($event)"></app-student-form>
+    </mat-card-content>
+    <mat-card-footer>
+       <button mat-fab (click)="backToList()" class="fab-bottom-left">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </mat-card-footer>
+  </mat-card>

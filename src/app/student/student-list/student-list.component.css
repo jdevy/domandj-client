@@ -1,0 +1,10 @@
+:host{
+  display: flex;
+  flex-flow: column;
+}
+
+mat-icon.avatar {
+  width:  64px;
+  height: 64px;
+  margin: 12px;
+}

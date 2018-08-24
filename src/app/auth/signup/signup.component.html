@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-title>PLEASE SIGN UP</mat-card-title>
+  <mat-card-content>
+    <form #signupForm="ngForm" (ngSubmit)="submit()">
+      <p>
+        <mat-form-field fxFlex>
+          <input type="text" matInput #userControl="ngModel" placeholder="Username" maxlength="30" name="username" [(ngModel)]="user.username"
+            required>
+        </mat-form-field>
+        <mat-hint fxLayoutAlign="start" *ngIf="userControl.invalid && !userControl.pristine">
+          <span *ngIf="passControl.hasError('required')" class="tc-red-600">username is required</span>
+        </mat-hint>
+      </p>
+
+      <p>
+        <mat-form-field fxFlex>
+          <input type="password" matInput #passControl="ngModel" placeholder="Password" name="password" [(ngModel)]="user.password"
+            required>
+          <mat-error fxLayoutAlign="start" *ngIf="passControl.hasError('required')">
+            Password is <strong>Required</strong>.
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field fxFlex>
+          <input type="text" matInput #emailControl="ngModel" placeholder="Email" name="email" [(ngModel)]="user.email" [pattern]="emailPattern">
+          <mat-hint fxLayoutAlign="start" *ngIf="emailControl.invalid">
+              Password is not correct !
+          </mat-hint>
+        </mat-form-field>
+      </p>
+
+      <p *ngIf="errorMessage" class="loginError">
+        {{ errorMessage }}
+      </p>
+
+      <p class="loginButtons">
+        <button type="submit" color="accent" mat-button md-raised-button fxFlex [disabled]="signupForm.invalid||signupForm.pending">Save</button>
+      </p>
+
+    </form>
+  </mat-card-content>
+</mat-card>
