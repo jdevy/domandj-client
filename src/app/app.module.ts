@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 
 import { LoadGuard } from './core/load-guard';
 import { AlertComponent } from './alert/alert.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AlertComponent } from './alert/alert.component';
     SharedModule,
     AppRoutingModule,
     AuthModule,
-    HomeModule
+    HomeModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [DialogComponent],
   providers: [],
