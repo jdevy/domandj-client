@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DialogComponent } from './dialog/dialog.component';
 import { environment } from '../environments/environment';
 
-import { LoadGuard } from './core/load-guard';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AlertComponent } from './alert/alert.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -31,7 +31,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [DialogComponent],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
