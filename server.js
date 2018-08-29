@@ -3,7 +3,7 @@ var express = require('express');
 var httpProxy = require('http-proxy');
 var bodyParser = require('body-parser');
 
-var apiForwardingUrl = 'https://domandj-server.herokuapp.com:443/';
+var apiForwardingUrl = 'https://domandj-server.herokuapp.com/';
 
 const port = process.env.PORT || '5000';
 
