@@ -27,7 +27,7 @@ var server = express();
 server.set('port', port);
 server.use(express.static(__dirname + '/dist'));
 
-server.get("*", function(req, res) {
+server.all("*", function(req, res) {
     apiProxy.web(req, res, {target: apiForwardingUrl});
 });
    
