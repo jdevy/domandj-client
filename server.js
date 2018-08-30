@@ -25,10 +25,8 @@ console.log('Forwarding API requests to ' + apiForwardingUrl);
 var server = express();
 server.set('port', port);
 server.use(express.static(__dirname + '/dist'));
-server.use(function(req, res, next) {
-    if (req.secure) {
-        next();
-    } else {
+server.use(function(req, res) {
+    if (!req.secure) {
         res.redirect('https://' + req.headers.host + req.url);
     }
 });
