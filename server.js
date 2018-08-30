@@ -26,17 +26,9 @@ var server = express();
 server.set('port', port);
 server.use(express.static(__dirname + '/dist'));
 
-function forceHttps(req, res, next){
-    if (!req.secure) {
-      res.redirect('https://' + req.headers.host + req.url);
-    }else {
-      return next();
-    }
-};
-
 server.all("*", function(req, res) {
     apiProxy.web(req, res, {target: apiForwardingUrl});
-}).all("*", forceHttps);
+});
    
 
 // Start Server.
